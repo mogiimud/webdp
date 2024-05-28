@@ -1,3 +1,4 @@
+
 <?php
 // isi nama host, username mysql, dan password mysql
 $databaseHost = "localhost";
@@ -13,4 +14,5 @@ if($mysqli){
     //echo "koneksi db berhasil.<br/>";
 }else{
     echo "koneksi gagal.<br/>";
+=======
 }

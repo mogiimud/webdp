@@ -1,3 +1,4 @@
+
 <?php
 
 //koneksi database
@@ -12,4 +13,5 @@ $result = mysqli_query($mysqli, "DELETE FROM user WHERE id_user = '$id'");
 //after delete redirect to home, so that latest user list will be displayed
 header("location:tabel.php");
 ?>
+
 

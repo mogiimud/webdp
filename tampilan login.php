@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -105,3 +106,4 @@ input[type="password"]:focus {
     color: #ff3385; /* Even darker pink on hover */
 }
 </style>
+
