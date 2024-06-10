@@ -78,8 +78,8 @@ $data = mysqli_fetch_array($query_mysql);
             <input type="text" id="name_product" name="name_product" value="<?php echo $data['name_product']; ?>" required>
             <label for="kategori">Kategori:</label>
             <input type="text" id="kategori" name="kategori" value="<?php echo $data['kategori']; ?>" required>
-            <label for="harga">Harga:</label>
-            <input type="number" id="harga" name="harga" value="<?php echo $data['harga']; ?>" required>
+            <label for="price">Harga:</label>
+            <input type="number" id="price" name="price" value="<?php echo $data['price']; ?>" required>
             <label for="stock">Stok:</label>
             <input type="number" id="stock" name="stock" value="<?php echo $data['stock']; ?>" required>
             <button type="submit">Update Product</button>

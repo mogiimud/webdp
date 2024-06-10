@@ -9,7 +9,7 @@
       margin: 0;
       padding: 0;
       font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #ffccff, #ff99cc); /* Latar belakang pink gradien */
+      background: white;
       color: #333;
     }
 
@@ -17,87 +17,91 @@
       display: flex;
       flex-wrap: wrap;
       gap: 24px;
-      justify-content: center; /* Menyamakan kotak ke tengah */
+      justify-content: center;
       padding: 20px;
     }
 
     .box {
       padding: 20px;
       background: linear-gradient(135deg, #ffccff, #ff99cc);
-      box-shadow: 8px 16px 24px rgba(255, 105, 180, 0.4);
       border-radius: 12px;
       text-align: center;
-      flex: 1 1 300px; /* Lebar minimum, lebar awal, dan lebar maksimum */
-      position: relative; /* Agar .price bisa diatur posisinya relatif terhadap .box */
-      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+      flex: 1 1 300px;
+      position: relative;
+      transition: transform 0.3s ease-in-out;
     }
 
     .box:hover {
-      transform: translateY(-10px);
-      box-shadow: 12px 24px 36px rgba(255, 105, 180, 0.6);
+      transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
     }
 
     .box img {
-      height: 200px; /* Ubah tinggi gambar agar seragam */
-      width: auto; /* Atur lebar gambar agar sesuai proporsi */
+      height: 200px;
+      width: auto;
       border-radius: 8px;
     }
 
     .box h1 {
       color: #333;
-      font-size: 18px;
-      margin-top: 10px; /* Berikan sedikit jarak atas pada judul */
+      font-size: 15px;
+      margin-top: 10px;
     }
 
     .box p {
-      margin: 8px 0; /* Berikan sedikit jarak antara paragraf */
+      margin: 8px 0;
       text-align: justify;
     }
 
     li a {
-      color: #fff; /* Warna teks putih */
-      background-color: #ff66b3; /* Warna latar belakang pink */
-      border: 2px solid #ff99cc; /* Warna border pink lebih muda */
-      padding: 10px 20px; /* Padding */
-      text-decoration: none; /* Menghapus garis bawah */
-      display: inline-block; /* Supaya padding berlaku dengan baik */
-      font-weight: bold; /* Teks tebal */
+      color: #fff;
+      background-color: #ff66b3;
+      border: 2px solid #ff99cc;
+      padding: 10px 20px;
+      text-decoration: none;
+      display: inline-block;
+      font-weight: bold;
       border-radius: 8px;
       transition: background-color 0.3s, color 0.3s, transform 0.3s;
-      box-shadow: 0 4px 8px rgba(255, 105, 180, 0.4); /* Efek tiga dimensi */
+      box-shadow: 0 4px 8px rgba(255, 105, 180, 0.4);
     }
 
-    /* CSS untuk efek hover */
     li a:hover {
-      background-color: #ff99cc; /* Warna latar belakang saat hover */
-      color: #fff; /* Warna teks saat hover */
-      transform: scale(1.05); /* Efek pembesaran saat hover */
+      background-color: #ff99cc;
+      color: #fff;
+      transform: scale(1.05);
     }
 
-    /* CSS untuk efek klik */
     li a:active {
-      transform: scale(0.95); /* Efek pengecilan saat di-klik */
+      transform: scale(0.95);
     }
-</style>
+  </style>
 </head>
 <body>
-  <li><a href="landingku2.php">BACK</a></li>
+  <li><a href="landing_ku2.php">BACK</a></li>
   <div class="box-container">
-    <?php
-    include 'kooneksi.php';
-    $query_mysql = mysqli_query($mysqli, "SELECT * FROM products ") or die(mysqli_error($mysqli));
+  <?php
+session_start(); // Mulai session sebelum mengakses session variabel
 
-    while ($data = mysqli_fetch_array($query_mysql)) { ?>
+include 'kooneksi.php';
+$query_mysql = mysqli_query($mysqli, "SELECT * FROM products") or die(mysqli_error($mysqli));
+
+while ($data = mysqli_fetch_array($query_mysql)) { ?>
     <div class="box">
-      <img src="<?php echo $data['foto'] ?>" alt="<?php echo $data['name_product'] ?>">
-      <h1><?php echo $data['no_kode']?></h1>
-      <h1><?php echo $data['name_product']?></h1>
-      <h1><?php echo $data['kategori']?></h1>
-      <h1><?php echo $data['price']?></h1>
-      <h1><?php echo $data['stock']?></h1>
-      <li><a href="order.php">ORDER</a></li>
+        <img src="<?php echo $data['foto'] ?>" alt="<?php echo $data['name_product'] ?>">
+        <h1><?php echo $data['name_product'] ?></h1>
+        <h1><?php echo $data['kategori'] ?></h1>
+        <h1>Harga: <?php echo $data['price'] ?></h1>
+        <p>Stock: <?php echo $data['stock'] ?></p>
+        <form action="order.php" method="post">
+            <input type="hidden" name="id_user" value="<?php echo isset($_SESSION['id_user']) ? $_SESSION['id_user'] : ''; ?>"> <!-- Tambahkan input tersembunyi untuk menyimpan ID pengguna -->
+            <input type="hidden" name="product_id" value="<?php echo $data['product_id']; ?>">
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" name="quantity" min="1" max="<?php echo $data['stock']; ?>" required>
+            <input type="submit" value="Order">
+        </form>
     </div>
-    <?php } ?>
+<?php } ?>
+
   </div>
 </body>
 </html>

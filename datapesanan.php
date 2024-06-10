@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order Details</title>
+
 </head>
 <body>
 <a href="admin.php">BACK</a>
@@ -16,7 +17,7 @@
                 <th>Customer Name</th>
                 <th>Address</th>
                 <th>Order Date</th>
-                <th>Product ID</th>
+                <th>Product Name</th>
                 <th>Category</th>
                 <th>Quantity</th>
                 <th>Price</th>
@@ -28,7 +29,7 @@
                 $servername = "localhost";
                 $username = "root";
                 $password = "";
-                $dbname = "pengolahan_yogurt";
+                $dbname = "pengolahan_yummy";
                 
                 // Create connection
                 $mysqli = new mysqli($servername, $username, $password, $dbname);
@@ -38,54 +39,53 @@
                     die("Connection failed: " . $mysqli->connect_error);
                 }
 
-                // Query untuk mengambil data pesanan
+                // Query to fetch order details
                 $sql = "SELECT 
-                    `order`.Order_id,
-                    customer.Nama,
-                    customer.Alamat,
-                    `order`.Order_date,
-                    products.product_id,
-                    products.kategori,
-                    orderdetails.Quantity,
-                    products.price,
-                    (orderdetails.Quantity * products.price) AS TotalPrice
-                FROM 
-                    `order`
-                INNER JOIN customer ON `order`.Customer_id = customer.Customer_id
-                INNER JOIN orderdetails ON `order`.Order_id = orderdetails.Order_id
-                INNER JOIN products ON orderdetails.product_id = products.product_id";
+                            orders.order_id,
+                            users.name AS Customer_Name,
+                            users.address AS Address,
+                            orders.order_date,
+                            products.name_product AS Product_Name,
+                            products.kategori AS Category,
+                            orders.quantity,
+                            orders.price,
+                            (orders.quantity * orders.price) AS TotalPrice
+                        FROM 
+                            orders
+                        INNER JOIN users ON orders.id_user = users.id_user
+                        INNER JOIN products ON orders.product_id = products.product_id";
 
-                $result = $mysqli->query($sql);
+                $mysqli = $mysqli->query($sql);
 
-                // Periksa apakah ada data yang ditemukan
-                if ($result->num_rows > 0) {
-                    // Tampilkan data
-                    while ($row = $result->fetch_assoc()) {
+                // Check if data is found
+                if ($mysqli->num_rows > 0) {
+                    // Display data
+                    while ($row = $mysqli->fetch_assoc()) {
                         echo "<tr>";
-                        echo "<td>" . $row["Order_id"] . "</td>";
-                        echo "<td>" . $row["Nama"] . "</td>";
-                        echo "<td>" . $row["Alamat"] . "</td>";
-                        echo "<td>" . $row["Order_date"] . "</td>";
-                        echo "<td>" . $row["product_id"] . "</td>";
-                        echo "<td>" . $row["kategori"] . "</td>";
-                        echo "<td>" . $row["Quantity"] . "</td>";
+                        echo "<td>" . $row["order_id"] . "</td>";
+                        echo "<td>" . $row["Customer_Name"] . "</td>";
+                        echo "<td>" . $row["Address"] . "</td>";
+                        echo "<td>" . $row["order_date"] . "</td>";
+                        echo "<td>" . $row["Product_Name"] . "</td>";
+                        echo "<td>" . $row["Category"] . "</td>";
+                        echo "<td>" . $row["quantity"] . "</td>";
                         echo "<td>$" . $row["price"] . "</td>";
-                    echo "<td>$" . $row["TotalPrice"] . "</td>";
-                    echo "</tr>";
-
+                        echo "<td>$" . $row["TotalPrice"] . "</td>";
+                        echo "</tr>";
                     }
                 } else {
                     echo "<tr><td colspan='9'>No orders found</td></tr>";
                 }
 
-                // Tutup koneksi
-                $mysqli->close();
+                // Close connection
+                $mysqli->close(); 
                 ?>
             </tbody>
         </table>
     </div>
 </body>
 </html>
+
 
 
 <style>

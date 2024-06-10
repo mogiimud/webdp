@@ -6,103 +6,98 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About Us - Yogurt Delights</title>
   <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      background-color: #ffe6f2;
-      color: #333;
-    }
+    /* General Styles */
+body {
+    background-color: pink;
+    font-family: Arial, sans-serif;
+    color: white;
+    margin: 0;
+    padding: 0;
+}
 
-    #header {
-      background-color: #ff66b3;
-      color: #fff;
-      padding: 1rem;
-      text-align: center;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
+/* Header Styles */
+#header {
+    background-color: #ff69b4;
+    text-align: center;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 
-    a {
-      display: inline-block;
-      margin: 10px;
-      padding: 10px 20px;
-      background-color: #ff99cc;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    }
+#header h1 {
+    font-size: 2.5em;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
 
-    a:hover {
-      background-color: #ff4da6;
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-    }
+#header a {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #ff1493;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
 
-    #about {
-      padding: 2rem;
-      text-align: center;
-    }
+#header a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
 
-    #about h2, #about h1 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      color: #ff4da6;
-      text-shadow: 1px 1px 2px #ff99cc;
-    }
+/* Section Styles */
+section#about {
+    background-color: #ff69b4;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 
-    #about p {
-      font-size: 1.2rem;
-      margin-bottom: 1rem;
-      color: #ff66b3;
-    }
+section#about h1, section#about h2 {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
 
-    #team {
-      display: flex;
-      justify-content: space-around;
-      padding: 2rem;
-    }
+section#about p {
+    font-size: 1.2em;
+    line-height: 1.6;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
 
-    #team .member {
-      text-align: center;
-    }
+/* Button Styles */
+button {
+    background-color: #ff1493;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
 
-    #team .member img {
-      width: 200px;
-      height: 200px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 1rem;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
 
-    #team .member h3 {
-      margin-bottom: 0.5rem;
-      color: #ff4da6;
-      text-shadow: 1px 1px 2px #ff99cc;
-    }
-
-    #team .member p {
-      margin-bottom: 1rem;
-      color: #ff66b3;
-    }
   </style>
 </head>
 <body>
 
   <header id="header">
     <h1>About Us</h1>
-    <a href="landingku2.php">BACK</a>
+    <a href="landing_ku2.php">BACK</a>
   </header>
 
   <section id="about">
-    <h2>Selamat Datang di Yogurt Delights!</h2>
-    <p>Kami di Yogurt Delights memiliki kegembiraan yang tak terbendung dalam membawa Anda ke dalam dunia yogurt yang penuh dengan kelezatan dan keunikan. Sebagai penggemar berat yogurt dan peminum setia, kami percaya bahwa yogurt bukan sekadar makanan biasa, tetapi juga merupakan suatu seni yang menggugah lidah dan jiwa.</p>
+    <h2>Selamat Datang di Yogurt YOUMMY!</h2>
+    <p>Kami di Yogurt Yoummy memiliki kegembiraan yang tak terbendung dalam membawa Anda ke dalam dunia yogurt yang penuh dengan kelezatan dan keunikan. Sebagai penggemar berat yogurt dan peminum setia, kami percaya bahwa yogurt bukan sekadar makanan biasa, tetapi juga merupakan suatu seni yang menggugah lidah dan jiwa.</p>
   </section>
 
   <section id="about">
     <h1>Latar Belakang Kami</h1>
-    <p>Yogurt Delights lahir dari obsesi kami terhadap yogurt yang autentik, sehat, dan bercita rasa tinggi. Kami memulai perjalanan ini dengan satu tujuan sederhana: membawa kelezatan yogurt yang langka dan lucu langsung ke tangan Anda. Dengan dedikasi yang tak tergoyahkan, kami telah melakukan perjalanan jauh untuk menemukan yogurt terbaik dari seluruh penjuru dunia.</p>
+    <p>Yogurt Yoummy lahir dari obsesi kami terhadap yogurt yang autentik, sehat, dan bercita rasa tinggi. Kami memulai perjalanan ini dengan satu tujuan sederhana: membawa kelezatan yogurt yang langka dan lucu langsung ke tangan Anda. Dengan dedikasi yang tak tergoyahkan, kami telah melakukan perjalanan jauh untuk menemukan yogurt terbaik dari seluruh penjuru dunia.</p>
   </section>
 
   <section id="about">

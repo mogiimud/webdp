@@ -4,77 +4,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Comments</title>
-    <link rel="stylesheet" href="style.css">
+</head>
 </head>
 <body>
 <a href="admin.php">BACK</a>
-    <div class="container">
-        <h1>User Comments</h1>
-        <table>
-            <thead>
-                <tr>
-                    <th>User ID</th>
-                    <th>Username</th>
-                    <th>Nama</th>
-                    <th>Comment ID</th>
-                    <th>Comment Text</th>
-                    <th>Created At</th>
-                </tr>
-            </thead>
-            <tbody>
-            <?php
-// Database configuration
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "pengolahan_yogurt";
+    <h1>User Comments</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Comment ID</th>
+                <th>User Name</th>
+                <th>Comment Text</th>
+                <th>Created At</th>
+            </tr>
+        </thead>
+        <tbody>
+        <?php
+        include("kooneksi.php");
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+        // Check connection
+        if ($mysqli->connect_error) {
+            die("Connection failed: " . $mysqli->connect_error);
+        }
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-$sql = "SELECT 
-            user.id_user,
-            user.username,
-            user.nama,
-            comment.id_comment,
-            comment.comment_text,
-            comment.created_at
-        FROM 
-            user
-        INNER JOIN 
-            comment
-        ON 
-            user.id_user = comment.id_user";
+        // Fetch comments with user information
+        $sql = "SELECT 
+                    comments.id_comment,
+                    users.name AS username,
+                    comments.comment_text,
+                    comments.comment_date
+                FROM 
+                    comments
+                INNER JOIN 
+                    users
+                ON 
+                    comments.id_user = users.id_user";
 
-$result = $conn->query($sql);
+        $mysqli = $mysqli->query($sql);
 
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        echo "<tr>";
-        echo "<td>" . $row['id_user'] . "</td>";
-        echo "<td>" . $row['username'] . "</td>";
-        echo "<td>" . $row['nama'] . "</td>";
-        echo "<td>" . $row['id_comment'] . "</td>";
-        echo "<td>" . $row['comment_text'] . "</td>";
-        echo "<td>" . $row['created_at'] . "</td>";
-        echo "</tr>";
-    }
-} else {
-    echo "<tr><td colspan='6'>No comments found.</td></tr>";
-}
+        if ($mysqli->num_rows > 0) {
+            while ($row = $mysqli->fetch_assoc()) {
+                echo "<tr>";
+                echo "<td>" . htmlspecialchars($row['id_comment']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['username']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['comment_text']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['comment_date']) . "</td>";
+                echo "</tr>";
+            }
+        } else {
+            echo "<tr><td colspan='4'>No comments found.</td></tr>";
+        }
 
-$conn->close();
-?>
-
-            </tbody>
-        </table>
-    </div>
+        // Close connection
+        $mysqli->close();
+        ?>
+        </tbody>
+    </table>
 </body>
 </html>
+
 <style>
     body {
     font-family: Arial, sans-serif;
@@ -82,7 +70,30 @@ $conn->close();
     margin: 0;
     padding: 0;
 }
+a {
+            display: inline-block;
+            padding: 10px 20px; /* Tambahan padding untuk efek 3D */
+            background-color: #ff66b2; /* Warna background pink */
+            color: white; /* Warna teks putih */
+            text-decoration: none;
+            border-radius: 5px;
+            border: 2px solid #ff3399; /* Tambahkan border untuk efek 3D */
+            box-shadow: 0 5px #ff3399; /* Bayangan untuk efek 3D */
+            cursor: pointer;
+            transition: all 0.3s;
+        }
 
+        a:hover {
+            background-color: #ff3399; /* Warna background pink lebih gelap saat hover */
+            box-shadow: 0 3px #ff0066; /* Mengurangi bayangan untuk efek 3D */
+            transform: translateY(-2px); /* Efek naik saat hover */
+        }
+
+        a:active {
+            background-color: #ff0066; /* Warna background pink lebih gelap saat aktif */
+            box-shadow: 0 2px #ff3399; /* Mengurangi bayangan lebih jauh */
+            transform: translateY(2px); /* Efek turun saat aktif */
+        }
 .container {
     width: 80%;
     margin: 50px auto;

@@ -86,7 +86,7 @@
   <div class="navbar">
          
          <ul>
-             <li><a href="landingku2.php">BACK</a></li>
+             <li><a href="index.php">LOG OUT</a></li>
              <li><a href="tabel.php">TABEL USER</a></li>
              <li><a href="datapesanan.php">TABEL ORDERS</a></li>
              <li><a href="manageproduk.php">TABEL PRODUK</a></li>

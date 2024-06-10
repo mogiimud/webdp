@@ -72,20 +72,28 @@
             <th>No</th>
             <th>Nama</th>
             <th>Username</th>
+            <th>Email</th>
             <th>Password</th>
+            <th>Alamat</th>
+            <th>Phone</th>
+            <th>Level</th>
             <th colspan="2">Aksi</th>
         </tr>
         <?php
         // Connect to the database
         include 'kooneksi.php';
-        $query_mysql = mysqli_query($mysqli, "SELECT * FROM user") or die(mysqli_error($mysqli));
+        $query_mysql = mysqli_query($mysqli, "SELECT * FROM users") or die(mysqli_error($mysqli));
         $nomor = 1;
         while ($data = mysqli_fetch_array($query_mysql)) {
             echo "<tr>";
             echo "<td>".$nomor++."</td>";
-            echo "<td>".$data['nama']."</td>";
+            echo "<td>".$data['name']."</td>";
             echo "<td>".$data['username']."</td>";
+            echo "<td>".$data['email']."</td>";
             echo "<td>".$data['password']."</td>";
+            echo "<td>".$data['address']."</td>";
+            echo "<td>".$data['phone']."</td>";
+            echo "<td>".$data['level']."</td>";
             echo "<td><a href='delete.php?id_user=".$data["id_user"]."'>Hapus</a></td>";
             echo "<td><a href='edit_user.php?id_user=".$data["id_user"]."'>Edit</a></td>";
             echo "</tr>";

@@ -65,7 +65,7 @@
     #header {
       background-color: #d147a3; /* Warna latar belakang header pink tua */
       color: #fff;
-      padding: 1px;
+      padding: 6px;
     }
 
     #banner {
@@ -114,6 +114,7 @@
       color: #fff; /* Warna teks fitur putih */
       font-size: 14px;
     }
+    
     footer {
       background-color: #ff66b3;
       color: #fff;
@@ -128,11 +129,10 @@
       margin: 0;
       display: flex;
       justify-content: center;
+      gap: 20px;
     }
 
     footer ul li {
-      display: inline-block;
-      margin: 0 10px;
       background-color: #ff99cc;
       padding: 10px;
       border-radius: 5px;
@@ -149,6 +149,30 @@
     footer ul li a:hover {
       color: #b33c86; /* Warna teks saat dihover */
     }
+
+    footer p {
+      margin: 0.5rem 0;
+    }
+
+    .logout-box {
+      background-color: #ff99cc;
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      display: inline-block;
+      margin-top: 10px;
+    }
+
+    .logout-box a {
+      color: #fff; /* Warna teks putih */
+      text-decoration: none;
+      font-size: 16px;
+      transition: color 0.3s ease;
+    }
+
+    .logout-box a:hover {
+      color: #b33c86; /* Warna teks saat dihover */
+    }
     
   </style>
 </head>
@@ -156,18 +180,19 @@
   <header id="header">
     <div class="navbar">
       <ul>
-        <li><a href="landingpage1.php">BACK</a></li>
+        <li><a href="logout.php">LOGOUT</a></li>
         <li><a href="profil.php">PROFILE WEB</a></li>
         <li><a href="tentangkami.php">TENTANG KAMI</a></li>
-        <li><a href="produkshop.php">YOGURT SHOP</a></li>
+        <li><a href="materiyogurt.php">MATERI YOGURT</a></li>
+        <li><a href="produkshop.php">ORDER</a></li>
         <li><a href="comment2.php">COMMENT</a></li>
+        <li><a href="riwayat_pemesanan.php">RIWAYAT PESANAN</a></li>
       </ul>
     </div>
   </header>
 
   <section id="banner">
   </section>
-
   <section id="features">
     <div class="feature">
       <img src="yogurt flavo.jpg" alt="Yogurt Flavored">
@@ -200,13 +225,13 @@
       <p>Yogurt drink dengan berbagai rasa buah-buahan seperti stroberi, peach, blueberry, mangga, atau melon, menambah kesegaran dan kelezatan minuman.</p>
     </div>
   </section>
-
-  <footer>
-    <ul>
-      <li><a href="materiyogurt.php">MATERI YOGURT</a></li>
-    </ul>
+  <footer id="footer">
+    <p>&copy; 2024 Yogurt Yoummy. All Rights Reserved.</p>
+    <p>Follow us on:
+        <a href="https://www.instagram.com/mogiimud_?igsh=cnRrZW10bHRrOGM1">Instagram</a> |
+        <a href="https://www.tiktok.com/@niecy_zyy?_t=8klkGHk80EZ&_r=1">Tiktok</a> 
+    </p>
   </footer>
 
 </body>
 </html>
-

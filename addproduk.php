@@ -10,16 +10,21 @@
     <div class="container">
         <h1>Add New Product</h1>
         <form action="insertproduk.php" method="post">
-            <label for="nama_produk">Nama Produk:</label>
-            <input type="text" id="nama_produk" name="nama_produk" required>
-            <label for="kategori">Kategori:</label>
-            <input type="text" id="kategori" name="kategori" required>
-            <label for="harga">Harga:</label>
-            <input type="number" id="harga" name="harga" required>
-            <label for="stok">Stok:</label>
-            <input type="number" id="stok" name="stok" required>
-            <button type="submit">Add Product</button>
-        </form>
+    <label for="name_product">Product Name:</label>
+    <input type="text" id="name_product" name="name_product" required>
+    
+    <label for="kategori">Category:</label>
+    <input type="text" id="kategori" name="kategori" required>
+    
+    <label for="price">Price:</label>
+    <input type="number" id="price" name="price" required>
+    
+    <label for="stock">Stock:</label>
+    <input type="number" id="stock" name="stock" required>
+    
+    <input type="submit" value="Add Product">
+</form>
+
     </div>
 </body>
 </html>

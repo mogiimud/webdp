@@ -9,11 +9,11 @@ if( !isset($_GET['id_user']) ){
 $id_user = $_GET['id_user'];
 
 // Fetech user data based on id
-$result = mysqli_query($mysqli, "SELECT * FROM user WHERE id_user=$id_user");
+$result = mysqli_query($mysqli, "SELECT * FROM users WHERE id_user=$id_user");
 
 while($user_data = mysqli_fetch_array($result))
 {
-    $nama = $user_data['nama'];
+    $name = $user_data['name'];
     $username = $user_data ['username'];
     $password = $user_data ['password'];
     $level = $user_data ['level'];
@@ -27,7 +27,7 @@ while($user_data = mysqli_fetch_array($result))
         <table>
             <tr>
                 <td>Nama</td>
-                <td><input type="text" name="nama" value="<?php echo $nama;?>"></td>
+                <td><input type="text" name="name" value="<?php echo $name;?>"></td>
             </tr>
             <tr>
                 <td>Username</td>

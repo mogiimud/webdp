@@ -8,7 +8,7 @@
 </head>
 <body>
   <ul>
-    <li><a href="landingku2.php">BACK</a></li>
+    <li><a href="landing_ku2.php">BACK</a></li>
   </ul>
   <div class="box-container">
     <?php

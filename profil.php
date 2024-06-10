@@ -24,7 +24,7 @@
                     <li><a href="https://www.instagram.com/mogiimud_?igsh=cnRrZW10bHRrOGM1" class="social-link">Instagram</a></li>
                     <li><a href="https://open.spotify.com/user/31vmtdlbxlrikfa2ycl55thsybm4?si=794be962f1044144" class="social-link">spotify</a></li>
                     <li><a href="https://www.tiktok.com/@niecy_zyy?_t=8klkGHk80EZ&_r=1" class="social-link">Tik Tok</a></li>
-                     <a href="landingku2.php">BACK</a>
+                     <a href="landing_ku2.php">BACK</a>
                 </ul>
             </div>
         </div>
@@ -42,7 +42,30 @@
     align-items: center;
     height: 100vh;
 }
+a {
+            display: inline-block;
+            padding: 10px 20px; /* Tambahan padding untuk efek 3D */
+            background-color: #ff66b2; /* Warna background pink */
+            color: white; /* Warna teks putih */
+            text-decoration: none;
+            border-radius: 5px;
+            border: 2px solid #ff3399; /* Tambahkan border untuk efek 3D */
+            box-shadow: 0 5px #ff3399; /* Bayangan untuk efek 3D */
+            cursor: pointer;
+            transition: all 0.3s;
+        }
 
+        a:hover {
+            background-color: #ff3399; /* Warna background pink lebih gelap saat hover */
+            box-shadow: 0 3px #ff0066; /* Mengurangi bayangan untuk efek 3D */
+            transform: translateY(-2px); /* Efek naik saat hover */
+        }
+
+        a:active {
+            background-color: #ff0066; /* Warna background pink lebih gelap saat aktif */
+            box-shadow: 0 2px #ff3399; /* Mengurangi bayangan lebih jauh */
+            transform: translateY(2px); /* Efek turun saat aktif */
+        }
 .container {
     background-color: #ffccf2;
     padding: 20px;
@@ -133,4 +156,4 @@ a[href="landingku2.php"]:hover {
 
 </style>
    
-=======
+

@@ -32,9 +32,10 @@
                 echo "<td>" . $data['kategori'] . "</td>";
                 echo "<td>" . $data['price'] . "</td>";
                 echo "<td>" . $data['stock'] . "</td>";
-                echo "<td><a href='editproduk.php?product_id=" . $data['product_id'] . "'>Edit</a></td>";
-                echo "<td><a href='deleteproduk.php?product_id=" . $data['product_id'] . "'>Delete</a></td>";
-                echo "</tr>";
+                echo "<td><a href='deleteproduk.php?product_id=".$data["product_id"]."'>Hapus</a></td>";
+            echo "<td><a href='editproduk.php?product_id=".$data["product_id"]."'>Edit</a></td>";
+            echo "</tr>";
+                
             }
             ?>
         </table>

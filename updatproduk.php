@@ -4,10 +4,10 @@ include 'kooneksi.php';
 $product_id = $_POST['product_id'];
 $name_product = $_POST['name_product'];
 $kategori = $_POST['kategori'];
-$harga = $_POST['harga'];
+$price = $_POST['price'];
 $stock = $_POST['stock'];
 
-$sql = "UPDATE products SET name_product='$name_product', kategori='$kategori', harga='$harga', stock='$stock' WHERE product_id='$product_id'";
+$sql = "UPDATE products SET name_product='$name_product', kategori='$kategori', price='$price', stock='$stock' WHERE product_id='$product_id'";
 
 if ($mysqli->query($sql) === TRUE) {
     echo "Product updated successfully!";

@@ -1,111 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Formulir Pemesanan</title>
-  <style>
-    body {
-    font-family: Arial, sans-serif;
-    background-color: #ffe6f2;
-    margin: 0;
-    padding: 0;
+<?php
+session_start();
+include 'kooneksi.php';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Tangkap data dari form
+    $id_user = $_SESSION['id_user'];
+    $product_id = $_POST['product_id'];
+    $quantity = $_POST['quantity'];
+
+    // Validasi ketersediaan produk
+    $query_check_stock = mysqli_query($mysqli, "SELECT stock, price FROM products WHERE product_id = '$product_id'");
+    $product_data = mysqli_fetch_assoc($query_check_stock);
+    $available_stock = $product_data['stock'];
+    $product_price = $product_data['price'];
+
+    if ($available_stock < $quantity) {
+        echo "Maaf, stok tidak mencukupi.";
+        exit();
+    }
+
+    // Hitung total harga
+    $total_price = $product_price * $quantity;
+
+    // Mulai transaksi
+    mysqli_begin_transaction($mysqli);
+
+    // Kurangi stok produk
+    $update_stock_query = "UPDATE products SET stock = stock - $quantity WHERE product_id = '$product_id'";
+    if (!mysqli_query($mysqli, $update_stock_query)) {
+        mysqli_rollback($mysqli);
+        echo "Error updating stock: " . mysqli_error($mysqli);
+        exit();
+    }
+
+    // Tanggal pesanan
+    $order_date = date("Y-m-d H:i:s");
+
+    // Masukkan pesanan ke dalam database
+    $insert_order_query = "INSERT INTO orders (id_user, product_id, quantity, order_date, price, total_price) VALUES ('$id_user', '$product_id', '$quantity', '$order_date', '$product_price', '$total_price')";
+    if (!mysqli_query($mysqli, $insert_order_query)) {
+        mysqli_rollback($mysqli);
+        echo "Error placing order: " . mysqli_error($mysqli);
+        exit();
+    }
+
+    // Commit transaksi
+    mysqli_commit($mysqli);
+
+     // Pengalihan ke halaman sukses
+     header("Location: succes.php");
+     exit();
 }
-
-li a {
-    display: inline-block;
-    padding: 10px 20px;
-    margin: 20px;
-    background-color: #ff99cc;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    transition: background-color 0.3s ease;
-}
-
-li a:hover {
-    background-color: #ff66b3;
-}
-
-.container {
-    width: 50%;
-    margin: 50px auto;
-    background-color: #ffccf2;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-}
-
-h1 {
-    text-align: center;
-    color: #ff4da6;
-    margin-bottom: 20px;
-    text-shadow: 1px 1px 2px #ff99cc;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-}
-
-label {
-    margin-top: 10px;
-    color: #ff4da6;
-}
-
-input[type="text"],
-input[type="number"] {
-    padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #ff99cc;
-    border-radius: 5px;
-    box-shadow: inset 0 2px 4px rgba(255, 153, 204, 0.3);
-}
-
-input[type="submit"] {
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #ff99cc;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-input[type="submit"]:hover {
-    background-color: #ff66b3;
-}
-
-  </style>
-</head>
-<body>
-  <li><a href="produkshop.php">BACK</a></li>
-  <div class="container">
-    <h1>Formulir Pemesanan</h1>
-    <form action="submit_order.php" method="POST">
-      <label for="Nama">Nama Pelanggan:</label>
-      <input type="text" id="Nama" name="Nama" required>
-
-      <label for="Email">Email:</label>
-      <input type="text" id="Email" name="Email" required>
-
-      <label for="Alamat">Alamat : </label>
-      <input type="text" id="Alamat" name="Alamat" required>
-
-      <label for="Phone">No Telp : </label>
-      <input type="text" id="Phone" name="Phone" required>
-
-      <label for="product_id">ID Produk:</label>
-      <input type="number" id="product_id" name="product_id" required>
-
-      <label for="Quantity">Jumlah:</label>
-      <input type="number" id="Quantity" name="Quantity" required>
-
-      <input type="submit" value="Pesan">
-    </form>
-  </div>
-</body>
-</html>
+?>

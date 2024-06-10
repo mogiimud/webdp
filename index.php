@@ -18,7 +18,7 @@
             <p> Selamat menikmati dan bersenang senang"</p>
             <p>"Tak ada yang bisa menyamai kelezatan yogurt,</p>
             <p> setiap gigitan adalah petualangan rasa yang tak terlupakan"</p>
-            <li><a href="tampilan login.php">Login</a></li>
+            <li><a href="tampilan_login.php">Login</a></li>
         </div>
     </div>
 </body>
